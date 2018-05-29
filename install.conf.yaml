@@ -4,8 +4,12 @@
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
+    ~/.aliases: aliases
     ~/bin:
         path: bin/
+        create: true
+    ~/.config:
+        path: config
         create: true
 
 - tap:
