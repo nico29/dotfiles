@@ -8,4 +8,30 @@
         path: bin/
         create: true
 
+- tap:
+    - homebrew/cask
+    - homebrew/cask-fonts
+    - homebrew/cask-versions
+    - homebrew/core
+    - homebrew/versions
+
+- brew:
+    - git
+    - git-lfs
+    - wget
+    - zsh
+    - neovim
+    - tmux
+    - exa
+    - node
+    - yarn
+
+- cask:
+    - iterm2
+    - visual-studio-code
+    - slack-beta
+    - docker
+    - alfred
+    - google-chrome-dev
+    - spotify
 
