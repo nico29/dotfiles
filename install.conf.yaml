@@ -1,3 +1,11 @@
+- defaults:
+    link:
+        relink: true
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [source install-oh-my-zsh.sh, Installing oh-my-zsh]
+
 - clean: ['~']
 
 - link:
@@ -11,13 +19,14 @@
     ~/.config:
         path: config
         create: true
+    ~/.oh-my-zsh/custom/materialshell.zsh-theme:
+        path: materialshell.zsh-theme
 
 - tap:
     - homebrew/cask
     - homebrew/cask-fonts
     - homebrew/cask-versions
     - homebrew/core
-    - homebrew/versions
 
 - brew:
     - git
@@ -39,3 +48,5 @@
     - google-chrome-dev
     - spotify
 
+- shell:
+    - [source ~/.dotfiles/node.sh, Installing global npm modules]
