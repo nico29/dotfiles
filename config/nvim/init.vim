@@ -2,6 +2,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'mhartington/oceanic-next'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 if (has("termguicolors"))
