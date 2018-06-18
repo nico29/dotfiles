@@ -8,6 +8,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 call plug#end()
 
 " Line number
@@ -36,3 +38,6 @@ let g:ale_sign_error = '✖'
 hi ALEErrorSign guifg=#DF8C8C
 let g:ale_sign_warning = '⚠'
 hi ALEWarningSign guifg=#F2C38F
+
+" Completion
+let g:deoplete#enable_at_startup = 1

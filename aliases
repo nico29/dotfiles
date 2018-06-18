@@ -17,6 +17,8 @@ alias h="history"
 alias j="jobs"
 alias gss="g status -s"
 alias vim="nvim"
+alias python="python3"
+alias pip="pip3"
 
 # ls via exa
 
