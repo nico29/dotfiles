@@ -2,7 +2,8 @@
   "libs": [
     "ecma5",
     "ecma6",
-    "browser"
+    "browser",
+	"react"
   ],
   "loadEagerly": [
   ],
@@ -10,5 +11,8 @@
     "module": {},
     "es_modules": {},
     "node": {}
-  }
+  },
+  "dontLoad": [
+      "node_modules/**"
+  ]
 }

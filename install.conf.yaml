@@ -21,6 +21,7 @@
         create: true
     ~/.oh-my-zsh/custom/materialshell.zsh-theme:
         path: materialshell.zsh-theme
+    ~/.tern-project: tern-project
 
 - tap:
     - homebrew/cask
