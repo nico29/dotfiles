@@ -1,0 +1,14 @@
+{
+  "libs": [
+    "ecma5",
+    "ecma6",
+    "browser"
+  ],
+  "loadEagerly": [
+  ],
+  "plugins": {
+    "module": {},
+    "es_modules": {},
+    "node": {}
+  }
+}
