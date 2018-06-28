@@ -9,3 +9,4 @@ npm i -g gatsby-cli
 npm i -g gitmoji-cli
 npm i -g http-server
 npm i -g rimraf
+npm i -g spaceship-prompt
