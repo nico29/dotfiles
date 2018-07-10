@@ -1,14 +1,19 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
+Plug 'othree/es.next.syntax.vim'
 Plug 'heavenshell/vim-jsdoc'
+Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'mxw/vim-jsx'
+Plug 'ap/vim-css-color'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -18,14 +23,23 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 call plug#end()
 
+let mapleader="\<Space>"
+
+set hidden
 " back to normal
 imap jj <Esc>
 
 " reload file when change occurs outside of vim
 set autoread
+
+" disable swap files
+set noswapfile
 
 " change the working directory
 set autochdir
@@ -42,9 +56,11 @@ nnoremap <S-k> :m .-2<CR>==
 inoremap <S-j> <Esc>:m .+1<CR>==gi
 inoremap <S-k> <Esc>:m .-2<CR>==gi
 
+" Git things
+nnoremap <leader>gs :Gstatus<CR>
 " Font encoding
 set encoding=utf8
-set guifont=Dank\ Mono\ Nerd\ Font:h11
+set guifont=Dank\ Mono\ Nerd\ Font:h14
 
 " Line number
 set number
@@ -71,28 +87,33 @@ endif
 
 " Color scheme and UI things
 syntax enable
-let g:nord_comment_brightness = 20
-let g:nord_uniform_status_lines = 1
-let g:nord_uniform_diff_background = 1
-let g:nord_cursor_line_number_background = 1
-colorscheme nord
+colorscheme onedark
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'onedark',
       \ }
 
 " NerdTree
 " reveal w/ ctrl+b
+:set mouse=a
 map <C-b> :NERDTreeToggle<CR>
 let g:NERDTreeLimitedSyntax = 1
+let g:NERDTreeMouseMode=3 " Use NERDTree with a mouse
+let g:NERDTreeGitStatusNodeColorization=1 " Enable git status colorisation a la Atom
+let g:NERDTreeShowHidden=1 " Show dotfiles by default
+let loaded_netrwPlugin=1 " Disable netrw since we're going to hijack it with NERDTree anyway
+let NERDTreeRespectWildIgnore=1 " Respect wildignore
+let g:NERDTreeHijackNetrw = 1 " Use the split explorer model, hijack netrw
+let g:NERDTreeMinimalUI=1 " Hide 'Press ? for help' prompt
 
 " JS linter specific things
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
-let g:ale_sign_error = '✖'
+let g:ale_sign_error = '>>'
 hi ALEErrorSign guifg=#DF8C8C
-let g:ale_sign_warning = '⚠'
+let g:ale_sign_warning = '--'
 hi ALEWarningSign guifg=#F2C38F
+let g:ale_fix_on_save = 1
 
 " javascript things
 let g:javascript_plugin_jsdoc = 1
@@ -105,6 +126,19 @@ let g:jsdoc_param_description_separator = '-'
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+" " Minimal LSP configuration for JavaScript
+let g:LanguageClient_serverCommands = {}
+if executable('javascript-typescript-stdio')
+  let g:LanguageClient_serverCommands.javascript = ['javascript-typescript-stdio']
+"   " Use LanguageServer for omnifunc completion
+  autocmd FileType javascript setlocal omnifunc=LanguageClient#complete
+else
+  :cq
+endif
+
 " Remove trailling white spaces before saving
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -112,10 +146,26 @@ autocmd BufWritePre * %s/\s\+$//e
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Set specific file stype and set specific options
 autocmd BufRead *.js set filetype=javascript
+autocmd BufRead *.json set filetype=javascript
 autocmd BufRead *.jsx set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
+
+" <leader>ld to go to definition
+autocmd FileType javascript nnoremap <buffer>
+  \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
+" <leader>lh for type info under cursor
+autocmd FileType javascript nnoremap <buffer>
+  \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
+" <leader>lr to rename variable under cursor
+autocmd FileType javascript nnoremap <buffer>
+  \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
+
+" Open new splits to the right and the bottom
+set splitbelow
+set splitright
+
