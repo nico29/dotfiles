@@ -4,7 +4,7 @@ DISABLE_AUTO_UPDATE="true"
 # BASE16_SHELL=$HOME/.config/base16-shell/
 # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/nicolasmarien/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/Workspace/server:$PATH";
 # Set name of the theme to load. Optionally, if you set this to "random"

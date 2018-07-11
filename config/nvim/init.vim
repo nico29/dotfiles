@@ -1,5 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'joshdick/onedark.vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -23,15 +24,16 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 call plug#end()
 
+" Space mappings
+nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
+let maplocalleader = "\<Space>"
 
 set hidden
+set clipboard^=unnamed  " Copy text to system clipboard<Paste>
+
 " back to normal
 imap jj <Esc>
 
@@ -51,10 +53,10 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " moving lines
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
-inoremap <S-j> <Esc>:m .+1<CR>==gi
-inoremap <S-k> <Esc>:m .-2<CR>==gi
+nnoremap <leader>jj :m .+1<CR>==
+nnoremap <leader>kk :m .-2<CR>==
+inoremap <leader>jj <Esc>:m .+1<CR>==gi
+inoremap <leader>kk <Esc>:m .-2<CR>==gi
 
 " Git things
 nnoremap <leader>gs :Gstatus<CR>
@@ -87,7 +89,8 @@ endif
 
 " Color scheme and UI things
 syntax enable
-colorscheme onedark
+let ayucolor="mirage"
+colorscheme ayu
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ }
@@ -126,19 +129,6 @@ let g:jsdoc_param_description_separator = '-'
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
-" Automatically start language servers.
-let g:LanguageClient_autoStart = 1
-
-" " Minimal LSP configuration for JavaScript
-let g:LanguageClient_serverCommands = {}
-if executable('javascript-typescript-stdio')
-  let g:LanguageClient_serverCommands.javascript = ['javascript-typescript-stdio']
-"   " Use LanguageServer for omnifunc completion
-  autocmd FileType javascript setlocal omnifunc=LanguageClient#complete
-else
-  :cq
-endif
-
 " Remove trailling white spaces before saving
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -154,16 +144,6 @@ autocmd BufRead *.json set filetype=javascript
 autocmd BufRead *.jsx set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
-
-" <leader>ld to go to definition
-autocmd FileType javascript nnoremap <buffer>
-  \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
-" <leader>lh for type info under cursor
-autocmd FileType javascript nnoremap <buffer>
-  \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
-" <leader>lr to rename variable under cursor
-autocmd FileType javascript nnoremap <buffer>
-  \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
 
 " Open new splits to the right and the bottom
 set splitbelow
