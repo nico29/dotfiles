@@ -1,6 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'joshdick/onedark.vim'
-Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -24,6 +23,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Space mappings
@@ -89,8 +89,7 @@ endif
 
 " Color scheme and UI things
 syntax enable
-let ayucolor="mirage"
-colorscheme ayu
+colorscheme onedark
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ }
