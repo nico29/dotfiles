@@ -116,6 +116,7 @@ hi ALEErrorSign guifg=#DF8C8C
 let g:ale_sign_warning = '--'
 hi ALEWarningSign guifg=#F2C38F
 let g:ale_fix_on_save = 1
+nnoremap <leader>ff :ALEFix<CR>
 
 " javascript things
 let g:javascript_plugin_jsdoc = 1
