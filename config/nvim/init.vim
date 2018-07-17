@@ -33,18 +33,14 @@ let maplocalleader = "\<Space>"
 
 set hidden
 set clipboard^=unnamed  " Copy text to system clipboard<Paste>
+set lazyredraw " delay redraw a bit
 
 " back to normal
 imap jj <Esc>
 
-" reload file when change occurs outside of vim
-set autoread
-
-" disable swap files
-set noswapfile
-
-" change the working directory
-set autochdir
+set autoread " reload file when change occurs outside of vim
+set noswapfile " disable swap files
+set autochdir " change the working directory
 
 " easy switch between splits
 nnoremap <C-J> <C-W><C-J>
@@ -70,7 +66,9 @@ set cursorline
 set numberwidth=4
 
 " show invisibles
-set list listchars=space:.
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+set listchars=space:.
 
 " indentation
 filetype plugin indent on
@@ -116,6 +114,9 @@ hi ALEErrorSign guifg=#DF8C8C
 let g:ale_sign_warning = '--'
 hi ALEWarningSign guifg=#F2C38F
 let g:ale_fix_on_save = 1
+let g:ale_pattern_options = {
+\ '\.json$': {'ale_linters': [], 'ale_fixers': []},
+\}
 nnoremap <leader>ff :ALEFix<CR>
 
 " javascript things
