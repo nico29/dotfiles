@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'joshdick/onedark.vim'
+Plug 'mhartington/oceanic-next'
 Plug 'itchyny/lightline.vim'
 Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -87,10 +87,10 @@ endif
 
 " Color scheme and UI things
 syntax enable
-colorscheme onedark
+colorscheme OceanicNext
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ }
+\ 'colorscheme': 'oceanicnext'
+\}
 
 " NerdTree
 " reveal w/ ctrl+b
