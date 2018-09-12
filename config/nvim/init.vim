@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'itchyny/lightline.vim'
 Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -23,6 +23,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'rizzatti/dash.vim'
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
@@ -82,14 +83,21 @@ set tabstop=4 " One tab = 4 spaces
 set hlsearch
 
 if (has("termguicolors"))
- set termguicolors
+    set termguicolors
 endif
 
 " Color scheme and UI things
 syntax enable
-colorscheme onedark
+let g:nord_italic = 1
+let g:nord_underline = 1
+let g:nord_italic_comments = 1
+let g:nord_uniform_status_lines = 1
+let g:nord_comment_brightness = 15
+let g:nord_uniform_diff_background = 1
+let g:nord_cursor_line_number_background = 1
+colorscheme nord
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'nord',
       \ }
 
 " NerdTree
