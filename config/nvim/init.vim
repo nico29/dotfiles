@@ -32,6 +32,9 @@ nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
 let maplocalleader = "\<Space>"
 
+" indent and cursor back in place
+nnoremap <leader>i gg=G''
+
 set hidden
 set clipboard^=unnamed  " Copy text to system clipboard<Paste>
 set lazyredraw " delay redraw a bit
@@ -92,8 +95,8 @@ let g:nord_comment_brightness = 20
 let g:nord_cursor_line_number_background = 1
 colorscheme nord
 let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ }
+            \ 'colorscheme': 'nord',
+            \ }
 
 " NerdTree
 " reveal w/ ctrl+b
@@ -110,16 +113,16 @@ let g:NERDTreeMinimalUI=1 " Hide 'Press ? for help' prompt
 
 " JS linter specific things
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
+            \   'javascript': ['eslint'],
+            \}
 let g:ale_sign_error = '>>'
 hi ALEErrorSign guifg=#DF8C8C
 let g:ale_sign_warning = '--'
 hi ALEWarningSign guifg=#F2C38F
 let g:ale_fix_on_save = 1
 let g:ale_pattern_options = {
-\ '\.json$': {'ale_linters': [], 'ale_fixers': []},
-\}
+            \ '\.json$': {'ale_linters': [], 'ale_fixers': []},
+            \}
 nnoremap <leader>ff :ALEFix<CR>
 
 " javascript things
