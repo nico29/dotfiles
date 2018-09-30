@@ -1,13 +1,18 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+" Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'mhartington/oceanic-next'
 Plug 'itchyny/lightline.vim'
-Plug 'ternjs/tern_for_vim'
+" Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'wokalski/autocomplete-flow'
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/es.next.syntax.vim'
-Plug 'heavenshell/vim-jsdoc'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'mxw/vim-jsx'
@@ -23,7 +28,6 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons'
-Plug 'rizzatti/dash.vim'
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
@@ -88,14 +92,13 @@ set hlsearch
 if (has("termguicolors"))
     set termguicolors
 endif
-
 " Color scheme and UI things
 syntax enable
-let g:nord_comment_brightness = 20
-let g:nord_cursor_line_number_background = 1
-colorscheme nord
+" let g:nord_comment_brightness = 20
+" let g:nord_cursor_line_number_background = 1
+colorscheme OceanicNext
 let g:lightline = {
-            \ 'colorscheme': 'nord',
+            \ 'colorscheme': 'oceanicnext',
             \ }
 
 " NerdTree
@@ -130,11 +133,12 @@ let g:javascript_plugin_jsdoc = 1
 
 " Completion
 let g:deoplete#enable_at_startup = 1
+let g:neosnippet#enable_completed_snippet = 1
 let g:jsdoc_enable_es6=1
 let g:jsdoc_param_description_separator = '-'
 " Use tern_for_vim.
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
+" let g:tern#command = ['tern']
+" let g:tern#arguments = ['--persistent']
 
 " Remove trailling white spaces before saving
 autocmd BufWritePre * %s/\s\+$//e
