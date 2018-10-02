@@ -3089,9 +3089,9 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>502 177 567 316 0 0 1440 878 </string>
+	<string>0 33 1440 710 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>546 391 796 486 0 0 1440 877 </string>
+	<string>211 325 796 486 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1440 877 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
@@ -3712,11 +3712,11 @@
 			<key>Name</key>
 			<string>Home</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>DankMonoNerdFont-Regular 17</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>DankMonoNerdFont-Regular 16</string>
+			<string>IBMPlexMono 16</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -3780,7 +3780,7 @@
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
-			<false/>
+			<true/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>

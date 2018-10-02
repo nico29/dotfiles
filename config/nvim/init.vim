@@ -63,7 +63,8 @@ inoremap <leader>kk <Esc>:m .-2<CR>==gi
 nnoremap <leader>gs :Gstatus<CR>
 " Font encoding
 set encoding=utf8
-set guifont=Dank\ Mono\ Nerd\ Font:h14
+" set guifont=Dank\ Mono\ Nerd\ Font:h14
+set guifont=IBM\ Plex\ Mono:h15
 
 " Line number
 set number
@@ -95,7 +96,7 @@ syntax enable
 " let g:nord_cursor_line_number_background = 1
 colorscheme OceanicNext
 let g:lightline = {
-            \ 'colorscheme': 'nord',
+            \ 'colorscheme': 'oceanicnext',
             \ }
 
 " NerdTree
