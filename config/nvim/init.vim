@@ -1,13 +1,11 @@
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'mhartington/oceanic-next'
 Plug 'itchyny/lightline.vim'
 " Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'wokalski/autocomplete-flow'
-" For func argument completion
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'w0rp/ale'
@@ -16,7 +14,6 @@ Plug 'othree/es.next.syntax.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'mxw/vim-jsx'
-Plug 'ap/vim-css-color'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
@@ -26,7 +23,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+" Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
@@ -98,12 +95,11 @@ syntax enable
 " let g:nord_cursor_line_number_background = 1
 colorscheme OceanicNext
 let g:lightline = {
-            \ 'colorscheme': 'oceanicnext',
+            \ 'colorscheme': 'nord',
             \ }
 
 " NerdTree
-" reveal w/ ctrl+b
-:set mouse=a
+set mouse=a
 nnoremap <leader>b :NERDTreeToggle<CR>
 let g:NERDTreeLimitedSyntax = 1
 let g:NERDTreeMouseMode=3 " Use NERDTree with a mouse
@@ -126,6 +122,7 @@ let g:ale_fix_on_save = 1
 let g:ale_pattern_options = {
             \ '\.json$': {'ale_linters': [], 'ale_fixers': []},
             \}
+let g:ale_completion_enabled = 1
 nnoremap <leader>ff :ALEFix<CR>
 
 " javascript things
@@ -144,7 +141,7 @@ let g:jsdoc_param_description_separator = '-'
 autocmd BufWritePre * %s/\s\+$//e
 
 " Fuzzy finder
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
