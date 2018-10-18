@@ -1,6 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 " colors
-Plug 'trevordmiller/nova-vim'
+Plug 'arcticicestudio/nord-vim'
 
 " visual things
 Plug 'itchyny/lightline.vim'
@@ -25,9 +25,9 @@ Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
 
 " utils
 Plug '/usr/local/opt/fzf'
@@ -67,6 +67,8 @@ nnoremap <leader>jj :m .+1<CR>==
 nnoremap <leader>kk :m .-2<CR>==
 inoremap <leader>jj <Esc>:m .+1<CR>==gi
 inoremap <leader>kk <Esc>:m .-2<CR>==gi
+vnoremap J :m '>+1<CR>gv=gv'
+vnoremap K :m '<-2<CR>gv=gv'
 
 " Git things
 nnoremap <leader>gs :Gstatus<CR>
@@ -93,18 +95,30 @@ set tabstop=4 " One tab = 4 spaces
 set hlsearch
 
 if (has("termguicnpm -g install typescriptolors"))
-	set termguicolors
+    set termguicolors
 endif
 " Color scheme and UI things
 syntax enable
-colorscheme nova
+let g:nord_comment_brightness = 20
+let g:nord_uniform_diff_background = 1
+let g:nord_cursor_line_number_background = 1
+colorscheme nord
 let g:lightline = {
-			\ 'colorscheme': 'nova',
-			\ }
+            \ 'colorscheme': 'nord',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+            \ },
+            \ 'component_function': {
+            \   'gitbranch': 'fugitive#head'
+            \ },
+            \ }
 
 " NerdTree
 set mouse=a
 nnoremap <leader>b :NERDTreeToggle<CR>
+" exit if only nerdtree is openned
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeLimitedSyntax = 1
 let g:NERDTreeMouseMode=3 " Use NERDTree with a mouse
 let g:NERDTreeShowHidden=1 " Show dotfiles by default
@@ -118,16 +132,16 @@ set cursorline
 
 " JS linter specific things
 let g:ale_fixers = {
-			\   'javascript': ['eslint'],
-			\}
+            \   'javascript': ['eslint'],
+            \}
 let g:ale_sign_error = '>>'
 hi ALEErrorSign guifg=#DF8C8C
 let g:ale_sign_warning = '--'
 hi ALEWarningSign guifg=#F2C38F
 let g:ale_fix_on_save = 1
 let g:ale_pattern_options = {
-			\ '\.json$': {'ale_linters': [], 'ale_fixers': []},
-			\}
+            \ '\.json$': {'ale_linters': [], 'ale_fixers': []},
+            \}
 nnoremap <leader>ff :ALEFix<CR>
 
 " javascript things
@@ -139,8 +153,8 @@ let g:neosnippet#enable_completed_snippet = 1
 let g:jsdoc_enable_es6=1
 let g:jsdoc_param_description_separator = '-'
 let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ }
+            \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+            \ }
 
 " Remove trailling white spaces before saving
 autocmd BufWritePre * %s/\s\+$//e
@@ -149,7 +163,6 @@ autocmd BufWritePre * %s/\s\+$//e
 nnoremap <leader>p :FZF<CR>
 " Set specific file stype and set specific options
 autocmd BufRead *.js set filetype=javascript
-autocmd BufRead *.json set filetype=javascript
 autocmd BufRead *.jsx set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell

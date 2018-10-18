@@ -20,6 +20,7 @@
         path: config
         create: true
     ~/.tern-project: tern-project
+    ~/.hammerspoon/init.lua: hammerspoon/init.lua
 
 - tap:
     - homebrew/cask
