@@ -1,6 +1,8 @@
 call plug#begin('~/.local/share/nvim/plugged')
 " colors
 Plug 'arcticicestudio/nord-vim'
+Plug 'haishanh/night-owl.vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 " visual things
 Plug 'itchyny/lightline.vim'
@@ -94,7 +96,7 @@ set tabstop=4 " One tab = 4 spaces
 " Search highlight
 set hlsearch
 
-if (has("termguicnpm -g install typescriptolors"))
+if (has("termguicolors"))
     set termguicolors
 endif
 " Color scheme and UI things
@@ -102,9 +104,9 @@ syntax enable
 let g:nord_comment_brightness = 20
 let g:nord_uniform_diff_background = 1
 let g:nord_cursor_line_number_background = 1
-colorscheme nord
+colorscheme night-owl
 let g:lightline = {
-            \ 'colorscheme': 'nord',
+            \ 'colorscheme': 'challenger_deep',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
