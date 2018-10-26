@@ -12,7 +12,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "N", function()
 end)
 
 -- hotkey for Hyper
-hs.hotkey.bind("alt", "space", function()
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "space", function()
     local notion = hs.application.get("Hyper")
     if notion == nil then
         notion = hs.application.open("Hyper")

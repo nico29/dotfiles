@@ -3,6 +3,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'arcticicestudio/nord-vim'
 Plug 'haishanh/night-owl.vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'dikiaap/minimalist'
 
 " visual things
 Plug 'itchyny/lightline.vim'
@@ -96,14 +97,12 @@ set tabstop=4 " One tab = 4 spaces
 " Search highlight
 set hlsearch
 
-if (has("termguicolors"))
-    set termguicolors
-endif
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+
 " Color scheme and UI things
 syntax enable
-let g:nord_comment_brightness = 20
-let g:nord_uniform_diff_background = 1
-let g:nord_cursor_line_number_background = 1
 colorscheme night-owl
 let g:lightline = {
             \ 'colorscheme': 'challenger_deep',
