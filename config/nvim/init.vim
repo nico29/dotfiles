@@ -1,37 +1,38 @@
 call plug#begin('~/.local/share/nvim/plugged')
 " colors
 Plug 'arcticicestudio/nord-vim'
+Plug 'mhartington/oceanic-next'
 Plug 'haishanh/night-owl.vim'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'dikiaap/minimalist'
 
 " visual things
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 
 " linter
 Plug 'w0rp/ale'
 
 " syntaxes
-" Plug 'pangloss/vim-javascript'
-Plug 'othree/es.next.syntax.vim'
+Plug 'othree/yajs.vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'mxw/vim-jsx'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'sheerun/vim-polyglot'
 
 " completions
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'wokalski/autocomplete-flow'
+" Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
             \ 'do': 'bash install.sh',
             \ }
-
+Plug 'Quramy/tsuquyomi'
 " utils
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -80,6 +81,7 @@ set encoding=utf8
 
 " Line number
 set number
+set rnu
 set numberwidth=4
 " show invisibles
 " Shortcut to rapidly toggle `set list`
@@ -103,18 +105,22 @@ set termguicolors
 
 " Color scheme and UI things
 syntax enable
-colorscheme night-owl
-let g:lightline = {
-            \ 'colorscheme': 'challenger_deep',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-            \ },
-            \ 'component_function': {
-            \   'gitbranch': 'fugitive#head'
-            \ },
-            \ }
-
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
+" let g:lightline = {
+"             \ 'colorscheme': 'oceanicnext',
+"             \ 'active': {
+"             \   'left': [ [ 'mode', 'paste' ],
+"             \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"             \ },
+"             \ 'component_function': {
+"             \   'gitbranch': 'fugitive#head'
+"             \ },
+"             \ }
+let g:airline_theme='oceanicnext'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 " NerdTree
 set mouse=a
 nnoremap <leader>b :NERDTreeToggle<CR>
@@ -127,13 +133,15 @@ let loaded_netrwPlugin=1 " Disable netrw since we're going to hijack it with NER
 let NERDTreeRespectWildIgnore=1 " Respect wildignore
 let g:NERDTreeHijackNetrw = 1 " Use the split explorer model, hijack netrw
 let g:NERDTreeMinimalUI=1 " Hide 'Press ? for help' prompt
-
-highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+let g:webdevicons_enable_nerdtree = 1
+let g:WebDevIconsOS = 'Darwin'
+" highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 set cursorline
 
 " JS linter specific things
 let g:ale_fixers = {
             \   'javascript': ['eslint'],
+            \   'typescript': ['eslint'],
             \}
 let g:ale_sign_error = '>>'
 hi ALEErrorSign guifg=#DF8C8C
@@ -153,9 +161,10 @@ let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
 let g:jsdoc_enable_es6=1
 let g:jsdoc_param_description_separator = '-'
-let g:LanguageClient_serverCommands = {
-            \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-            \ }
+" let g:LanguageClient_serverCommands = {
+"\'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"\'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
+            " \ }
 
 " Remove trailling white spaces before saving
 autocmd BufWritePre * %s/\s\+$//e
