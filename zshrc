@@ -26,5 +26,6 @@ export SPACESHIP_PACKAGE_SHOW=false
 export SPACESHIP_DOCKER_SHOW=false
 export SPACESHIP_EXEC_TIME_SHOW=false
 export SPACESHIP_GIT_BRANCH_PREFIX=
+export FZF_DEFAULT_COMMAND='fd --type f'
 autoload -U promptinit; promptinit
 prompt spaceship

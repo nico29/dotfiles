@@ -12,13 +12,15 @@ Plug 'airblade/vim-gitgutter'
 
 " UI {{{
 Plug 'mhartington/oceanic-next'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 " }}}
 
 " Synxtax {{{
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
+" Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'jparise/vim-graphql'
 Plug 'hail2u/vim-css3-syntax'
@@ -49,7 +51,7 @@ set noswapfile
 set nobackup
 set autoread
 set hidden
-set cursorline
+" set cursorline
 set mouse=a
 set spell
 set spelllang=en,fr
@@ -75,13 +77,18 @@ set expandtab
 " let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 syntax enable
-let g:oceanic_next_terminal_bold = 1
+" let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
+let g:onedark_terminal_italics = 1
 colorscheme OceanicNext
 " }}}
 
 " Airline {{{
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 let g:airline_powerline_fonts = 1
+let g:airline_symbols.branch = ''
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#enabled = 1
@@ -159,7 +166,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " MAPPINGS {{{
 nnoremap <leader>p :FZF<CR>
 nmap <leader>l :set list!<CR>
-set listchars=space:.
+set listchars=space:·,eol:¬,trail:-
 " indent and cursor back in place
 nnoremap <leader>ii gg=G''
 " split navigation
@@ -170,6 +177,9 @@ nnoremap <C-H> <C-W><C-H>
 " tab navigation
 nnoremap <leader><left> :tabprevious<CR>
 nnoremap <leader><right> :tabnext<CR>
+" buffer navigation
+nmap <leader>, :bnext<CR>
+nmap <leader>; :bprevious<CR>
 " }}}
 
 autocmd BufRead *.js set filetype=javascript
