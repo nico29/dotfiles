@@ -12,15 +12,16 @@ Plug 'airblade/vim-gitgutter'
 
 " UI {{{
 Plug 'mhartington/oceanic-next'
-Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 " }}}
 
 " Synxtax {{{
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'pangloss/vim-javascript'
-" Plug 'othree/yajs.vim'
+" Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'jparise/vim-graphql'
 Plug 'hail2u/vim-css3-syntax'
@@ -51,10 +52,10 @@ set noswapfile
 set nobackup
 set autoread
 set hidden
-" set cursorline
+set cursorline
 set mouse=a
 set spell
-set spelllang=en,fr
+set spelllang=en
 set clipboard^=unnamed " Copy text to system clipboard<Paste>
 set hlsearch
 set splitbelow
@@ -73,14 +74,18 @@ set expandtab
 " }}}
 
 " COLORS {{{
-" let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 syntax enable
-" let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-let g:onedark_terminal_italics = 1
-colorscheme OceanicNext
+let g:nord_italic = 1
+let g:nord_underline = 1
+let g:nord_italic_comments = 1
+let g:nord_uniform_status_lines = 1
+let g:nord_comment_brightness = 20
+let g:nord_uniform_diff_background = 1
+let g:nord_cursor_line_number_background = 1
+colorscheme nord
 " }}}
 
 " Airline {{{
@@ -90,7 +95,7 @@ endif
 let g:airline_powerline_fonts = 1
 let g:airline_symbols.branch = ''
 let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='oceanicnext'
+let g:airline_theme='nord'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_detect_spelllang=0
 let g:airline_detect_spell=0
