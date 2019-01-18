@@ -1,3 +1,7 @@
+POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
 DISABLE_AUTO_UPDATE="true"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -20,12 +24,5 @@ export NVM_DIR="$HOME/.nvm"
 source $HOME/.aliases
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Set Spaceship ZSH as a prompt
-export SPACESHIP_DIR_COLOR=yellow
-export SPACESHIP_PACKAGE_SHOW=false
-export SPACESHIP_DOCKER_SHOW=false
-export SPACESHIP_EXEC_TIME_SHOW=false
-export SPACESHIP_GIT_BRANCH_PREFIX=
 export FZF_DEFAULT_COMMAND='fd --type f'
-autoload -U promptinit; promptinit
-prompt spaceship
+export PATH=/Users/nicolasmarien/.deno/bin:$PATH
