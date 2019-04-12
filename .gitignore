@@ -1,3 +1,0 @@
-config/*
-!config/nvim
-config/nvim/.netrwhist

@@ -35,12 +35,12 @@ fi
 
 #4. link files
 echo "Linking files..."
-ln -sfn ./bin $HOME/bin
-ln -sfn config/aliases $HOME/.aliases
-ln -sfn config/zshrc $HOME/.zshrc
-ln -sfn config/gitconfig $HOME/.gitconfig
+ln -f ./bin $HOME/bin
+ln -f config/aliases $HOME/.aliases
+ln -f config/zshrc $HOME/.zshrc
+ln -f config/gitconfig $HOME/.gitconfig
 mkdir -p $HOME/.config/nvim
-ln -sfn config/init.vim $HOME/.config/nvim/init.vim
+ln -f config/init.vim $HOME/.config/nvim/init.vim
 echo '✔ done linking files'
 
 
